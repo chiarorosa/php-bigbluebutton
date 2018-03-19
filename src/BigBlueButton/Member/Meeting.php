@@ -243,6 +243,16 @@ class Meeting
      * @var array
      */
     protected $slides;
+    
+    /**
+     * Expire on left
+     */
+    protected $meetingExpireWhenLastUserLeftInMinutes;
+
+    /**
+     * Expire before joined
+     */
+    protected $meetingExpireIfNoUserJoinedInMinutes;
 
     /**
      * The BigBlueButton client.
@@ -308,6 +318,10 @@ class Meeting
      *     recording. This means the meeting can start recording automatically
      *     (autoStartRecording=true) with the user able to stop/start recording
      *     from the client.
+     *   - meetingExpireWhenLastUserLeftInMinutes (number): Number of minutes to end 
+     *     meeting when the last user left.
+     *   - meetingExpireIfNoUserJoinedInMinutes (number): End meeting if no user joined 
+     *     within a period of time after meeting created.
      *
      * @param \sanduhrs\BigBlueButton\Client $client
      */
@@ -329,6 +343,8 @@ class Meeting
             'moderatorOnlyMessage' => '',
             'autoStartRecording' => false,
             'allowStartStopRecording' => true,
+            'meetingExpireWhenLastUserLeftInMinutes' => 5,
+            'meetingExpireIfNoUserJoinedInMinutes' => 5,
         ];
 
         // Take naming inconsistencies into account.
